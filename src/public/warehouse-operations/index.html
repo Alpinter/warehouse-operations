@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Warehouse Operations</title>
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/font-awesome.css" rel="stylesheet">
+	<link href="assets/css/documents.css" rel="stylesheet">
+    <script src="assets/js/angular/angular.js"></script>
+    <script src="assets/js/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="assets/js/angular-resource/angular-resource.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/components/core/core.module.js"></script>
+    <script src="app/components/core/core.route.js"></script>
+    <script src="app/components/documents/documents.module.js"></script>
+    <script src="app/components/documents/documents.route.js"></script>
+    <script src="app/components/documents/documents.service.js"></script>
+    <script src="app/components/documents/document-list.controller.js"></script>
+    <script src="app/components/documents/document.controller.js"></script>
+    <script src="app/components/documents/articles.service.js"></script>
+    <script src="app/components/documents/items.service.js"></script>
+    <script src="app/components/shared/checklist/checklist.module.js"></script>
+    <script src="app/components/shared/checklist/checklist.directive.js"></script>
+</head>
+<body ng-app="warehouse-operations">
+	<div class="container-fluid">
+		<div ui-view="header"></div>
+        <div ui-view="content"></div>
+	</div>
+</body>
+</html>

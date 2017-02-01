@@ -1,0 +1,71 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <div class="row">
+          <div class="col-sm-4">
+              <p>Transaction Type: {{dc.document.transactionType}} </p>
+              <p>Date of Creation: {{dc.document.dateOfCreation | date: 'EEEE, MMMM d, y'}} </p>
+              <p ng-show="dc.document.dateOfRecording">Date of Recording: {{dc.document.dateOfRecording | date: 'EEEE, MMMM d, y'}} </p>
+          </div>
+          <div class="col-sm-4">
+              <p><u>Business Partner</u></p>
+              <p> {{dc.document.businessPartner.name}} </p>
+              <p> {{dc.document.businessPartner.address}}, {{dc.document.businessPartner.city}} </p>
+          </div>
+          <div class="col-sm-4">
+              <p>Status: {{dc.document.status}} </p>
+              <button type="button" class="btn btn-primary" ng-click="dc.record(dc.document._id)" ng-hide="dc.document.dateOfRecording">Record Document</button>
+          </div>
+      </div>  
+  </div>
+</div>
+<div class="row">
+    <div ng-class="{'col-sm-8': !dc.document.dateOfRecording, 'col-sm-12': dc.document.dateOfRecording}">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Document Items</th>
+                </tr>
+                <tr>
+                    <th>Article</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Value</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in dc.items">
+                <td> {{item.name}} </td>
+                <td> {{item.price}} </td>
+                <td> {{item.quantity}} </td>
+                <td> {{item.price * item.quantity | number: 2}} </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-3" ng-hide="dc.document.dateOfRecording">
+        <h3>Add new item</h3>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label" for="article">Article</label>
+                <div> 
+                    <select class="form-control" id="article" ng-options="article.code as article.name for article in dc.articles" ng-model="dc.item.article"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="price">Price</label>
+                <div> 
+                    <input type="number" class="form-control" id="price" ng-model="dc.item.price">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="quantity">Quantity</label>
+                <div> 
+                    <input type="number" class="form-control" id="quantity" ng-model="dc.item.quantity">
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" ng-click="dc.saveItem()">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

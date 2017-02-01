@@ -1,0 +1,9 @@
+<div class="checklist">
+    <span ng-show="opened">
+        <span ng-repeat="(key, value) in checklist">
+            <small> {{key}} </small> <input type="checkbox" ng-model="checklist[key]">
+        </span>   
+    </span>
+    <button type="button" class="btn btn-primary" ng-show="!opened" ng-click="opened = !opened">Open table settings</button>
+    <button type="button" class="btn btn-default" ng-show="opened" ng-click="opened = !opened">Close table settings</button>
+</div>

@@ -1,0 +1,48 @@
+<div>
+    <ul class="pagination">
+        <li ng-hide="dlc.pagination.page===1"><a class="link" ng-href ng-click="dlc.pagination.changePage(dlc.pagination.page - 1)">&laquo;</a></li>
+        <li ng-repeat="page in dlc.pagination.numberOfPages track by $index"><a class="link" ng-href ng-click="dlc.pagination.changePage($index + 1)"> {{$index + 1}} </a></li>
+        <li ng-hide="dlc.pagination.page===dlc.pagination.numberOfPages.length"><a class="link" ng-href ng-click="dlc.pagination.changePage(dlc.pagination.page + 1)">&raquo;</a></li>
+    </ul>
+    <span class="pull-right" checklist="dlc.columns"></span>
+</div>
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+      <tr>
+        <th ng-show="dlc.columns['Date of Creation']"><a class="link" ng-href ng-click="dlc.changeSortCriteria('dateOfCreation')">Date of Creation
+            <i class="fa fa-sort" ng-hide="dlc.sort==='dateOfCreation'"></i>
+            <i class="fa fa-sort-desc" ng-show="dlc.sort==='dateOfCreation' && dlc.sortDirection==='asc'"></i>
+            <i class="fa fa-sort-asc" ng-show="dlc.sort==='dateOfCreation' && dlc.sortDirection==='desc'"></i>
+        </a></th>
+        <th ng-show="dlc.columns['Date of Recording']"><a class="link" ng-href ng-click="dlc.changeSortCriteria('dateOfRecording')">Date of Recording
+            <i class="fa fa-sort" ng-hide="dlc.sort==='dateOfRecording'"></i>
+            <i class="fa fa-sort-desc" ng-show="dlc.sort==='dateOfRecording' && dlc.sortDirection==='asc'"></i>
+            <i class="fa fa-sort-asc" ng-show="dlc.sort==='dateOfRecording' && dlc.sortDirection==='desc'"></i>
+        </a></th>
+        <th ng-show="dlc.columns['Status']"><a class="link" ng-href ng-click="dlc.changeSortCriteria('status')">Status
+            <i class="fa fa-sort" ng-hide="dlc.sort==='status'"></i>
+            <i class="fa fa-sort-desc" ng-show="dlc.sort==='status' && dlc.sortDirection==='asc'"></i>
+            <i class="fa fa-sort-asc" ng-show="dlc.sort==='status' && dlc.sortDirection==='desc'"></i>
+        </a></th>
+        <th ng-show="dlc.columns['Transaction Type']"><a class="link" ng-href ng-click="dlc.changeSortCriteria('transactionType')">Transaction Type
+            <i class="fa fa-sort" ng-hide="dlc.sort==='transactionType'"></i>
+            <i class="fa fa-sort-desc" ng-show="dlc.sort==='transactionType' && dlc.sortDirection==='asc'"></i>
+            <i class="fa fa-sort-asc" ng-show="dlc.sort==='transactionType' && dlc.sortDirection==='desc'"></i>
+        </a></th>
+        <th ng-show="dlc.columns['Business Partner']">Business Partner</th>
+        <th ng-show="dlc.columns['Business Partner Location']">Business Partner Location</th>
+        <th ng-show="dlc.columns['Year']">Year</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr class="link" ng-repeat="document in dlc.documents" ng-click="dlc.documentDetails(document._id)">
+            <td ng-show="dlc.columns['Date of Creation']"> {{document.dateOfCreation | date: 'MMM d, y'}} </td>
+            <td ng-show="dlc.columns['Date of Recording']"> {{document.dateOfRecording | date: 'MMM d, y'}} </td>
+            <td ng-show="dlc.columns['Status']"> {{document.status}} </td>
+            <td ng-show="dlc.columns['Transaction Type']"> {{document.transactionType}} </td>
+            <td ng-show="dlc.columns['Business Partner']"> {{document.businessPartner.name}} </td>
+            <td ng-show="dlc.columns['Business Partner Location']"> {{document.businessPartner.city}}, {{document.businessPartner.address}} </td>
+            <td ng-show="dlc.columns['Year']"> {{document.year}} </td>
+        </tr>
+    </tbody>
+</table>
